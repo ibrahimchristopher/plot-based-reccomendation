@@ -30,6 +30,8 @@ import streamlit as st
 
 st.title('Plot Based Movie Reccomendation')
 
+st.text("By Ibrahim Ibrahim")
+
 st.header("Generating Movie Reccomendations Leveraging Vector Databases via Pinecone and Langchain")
 
 st.subheader("Select Movie")
@@ -52,7 +54,7 @@ st.subheader("Select Movie")
 
 
     
-movie_name = st.selectbox('Movie: ', movie_list)
+movie_name = st.selectbox('Movie: This List Contans 10K Movies', movie_list)
 
 movie_id = movie_names_and_ids[movie_name]
 
