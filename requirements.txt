@@ -1,0 +1,4 @@
+streamlit
+pinecone-client
+protoc_gen_openapiv2
+grpcio
