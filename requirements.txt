@@ -1,4 +1,4 @@
 streamlit
-pinecone-client
+pinecone
 protoc_gen_openapiv2
 grpcio

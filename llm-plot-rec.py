@@ -4,17 +4,27 @@ Created on Tue Jul 30 08:33:45 2024
 
 @author: user
 """
+import streamlit as st
 
 import json
+from pinecone import (
+    Pinecone,
+    ServerlessSpec,
+    CloudProvider,
+    AwsRegion,
+    VectorType
+)
 
 
-API_KEY = "18c0530f-d2f0-4fec-b5f2-7bf9a4e5ddb8"
-from pinecone.grpc import PineconeGRPC as Pinecone
-from pinecone import ServerlessSpec
 
-pc = Pinecone(api_key=API_KEY)
+PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+PINECONE_INDEX_NAME = st.secrets["PINECONE_INDEX_NAME"]
 
-index = pc.Index('movie-plot')
+# 1. Instantiate the Pinecone client
+pc = Pinecone(api_key=PINECONE_API_KEY)
+
+
+index = pc.Index(PINECONE_INDEX_NAME)
 # Specify the file name
 file_name = "movie_names_and_ids.json"
 
@@ -60,8 +70,8 @@ movie_id = movie_names_and_ids[movie_name]
 
 res = index.fetch(ids=[movie_id])
 
-res = res.to_dict()
-metadata = res['vectors'][movie_id]['metadata']
+#res = res.to_dict()
+metadata = res.vectors[movie_id]['metadata']
 
 
 def get_reccomendations(movie_name):
